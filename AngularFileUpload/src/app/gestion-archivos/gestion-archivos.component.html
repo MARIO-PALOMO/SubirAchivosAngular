@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="GuardarArchivo()">
+
+    <div class="form-group">
+      <label for="archivo_">Seleccionar Archivo</label>
+      <input type="file" id="archivo_" (change)="CodificarArchivo($event)" #fileInput>
+      <br>
+      <button type="button" class="btn btn-sm btn-default" (click)="LimpiarArchivo()">Remover Archivo</button>
+    </div>
+    <button type="submit" class="btn btn-success" style="width: 100%">
+      <b>Guardar Archivo</b>
+      <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+    </button>
+  </form>
+
+  <br>
+  <h3>Descargar Archivo a la Base de Datos</h3>
+  <div class="form-group">
+    <select name="lstArchivosValue" [(ngModel)]="lstArchivosValue" id="lstArchivosValue" class="form-control">
+      <option *ngFor="let lstArchivos of lstArchivos" value="{{lstArchivos.id}}">{{lstArchivos.nombre}}</option>
+    </select>
+  </div>
+  <form action="" method="POST" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <button type="submit" (click)="descargarArchivo()" class="btn btn-primary" style="width: 100%">
+        <b>Descargar</b>
+      </button>
+    </div>
+  </form>
